@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acaaa Imupp</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts animation */
+        body::before {
+            content: "💕 ❤️ 💖 💝 💗 💓 💕 ❤️ 💖";
+            position: fixed;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            font-size: 30px;
+            animation: floatHearts 15s infinite linear;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .container-navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            background-color: #ffffff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #ff69b4;
+            will-change: transform, opacity;
+        }
+
+        .logo {
+            margin-left: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #ff69b4;
+            animation: pulse 2s infinite;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .ul-navbar {
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+        }
+
+        .li-navbar {
+            list-style-type: none;
+            margin: 0 15px;
+        }
+
+        .a-navbar {
+            color: #ff1493;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .a-navbar::before {
+            display: none;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .container-navbar.scrolled .a-navbar::before {
+            display: none;
+        }
+
+        .a-navbar:hover::before {
+            left: 100%;
+        }
+
+        .a-navbar:hover {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 20, 147, 0.3);
+        }
+
+        .container-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 160px);
+            text-align: center;
+            padding: 50px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .couple-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin: 30px 0;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+
+        .couple-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ff69b4;
+            margin: 0 auto 30px;
+            display: block;
+            transition: transform 0.3s ease;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .couple-photo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .love-message {
+            font-size: 1.2rem;
+            color: #ff1493;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255, 20, 147, 0.4);
+        }
+
+        .container-footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 3px solid #ff69b4;
+            position: relative;
+            z-index: 10;
+        }
+
+        .h1-footer {
+            color: #ff1493;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            animation: sparkle 3s infinite;
+        }
+
+        .couple-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Mobile Responsiveness */
+        @media only screen and (max-width: 768px) {
+            .container-navbar {
+                height: 70px;
+                padding: 0 15px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+                margin-left: 15px;
+            }
+
+            .ul-navbar {
+                margin-right: 15px;
+            }
+
+            .li-navbar {
+                margin: 0 8px;
+            }
+
+            .a-navbar {
+                font-size: 16px;
+                padding: 10px 15px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .couple-container {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .couple-photo {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+
+            .love-message {
+                font-size: 1rem;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .ul-navbar {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .li-navbar {
+                margin: 5px;
+            }
+
+            .a-navbar {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .couple-container {
+                margin: 15px;
+                padding: 25px 15px;
+            }
+        }
+
+            .hamburger {
+                display: none;
+                font-size: 30px;
+                cursor: pointer;
+                margin-right: 20px;
+                color: #ff1493;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .ul-navbar {
+                display: none;
+                flex-direction: column;
+                background: rgba(255,255,255,0.95);
+                position: absolute;
+                top: 80px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                border-top: 3px solid #ff69b4;
+                z-index: 99;
+            }
+
+            .ul-navbar.active {
+                display: flex;
+            }
+
+            .li-navbar {
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION BAR -->
+    <div class="container-navbar">
+        <div class="logo">
+            <img src="ca.jpg" alt="Logo" />
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <ul class="ul-navbar" id="navMenu">
+            <li class="li-navbar">
+                <a href="#" class="a-navbar">HOME 🏠</a>
+            </li>
+            <li class="li-navbar">
+                <a href="loveTruck.html" class="a-navbar">MESSAGE 💌</a>
+            </li>
+            <li class="li-navbar">
+                <a href="gallery.html" class="a-navbar">GALLERY 📸</a>
+            </li>
+            <li class="li-navbar">
+                <a href="index.html" class="a-navbar">CONTACT 💬</a>
+            </li>
+        </ul>
+    </div>
+    <!-- NAVIGATION BAR END -->
+
+    <!-- MAIN CONTENT -->
+    <div class="container-content">
+        <h1 class="hero-title">Made for ma lop ma bby</h1>
+        <p class="hero-subtitle">Semoga kamu senenk liat ini walaupun ga berfaedah WKWKWKWK</p>
+        
+        <div class="couple-container">
+            <div class="couple-photo">
+                <img src="WhatsApp Image 2025-07-19 at 18.40.54_5e283f1e.jpg" alt="couple" />
+            </div>
+            <p class="love-message">
+                HAIII INI AK BKIN DENGAN SEPENUH HATIKUU 💕<br>
+                Kalo kamu nanti ngambek liat ini aja ya siapa tau ga ngambek lgi hehehe
+                Semoga kamu seneng yaa, lauf u so muchh :3
+            </p>
+            <a href="gombal.html" class="cta-button">CLICK INIIII BABYYYY</a>
+        </div>
+
+        <div class="couple-container">
+            <h2 style="color: #ff1493; margin-bottom: 20px;">💕 Fun Fact What I Feel About U 💕</h2>
+            <div style="text-align: left; color: #666; font-size: 1.1rem; line-height: 1.8;">
+                <p>🌟 First meet: Mobile Legend WKWKKWKWKWKW </p>
+                <p>💝 Ngeselin tapi ngangenin </p>
+                <p>🎵 Lagu kesukaanmu Rata rata aku suka (kayaknya) </p>
+                <p>🌈 Masi anak kecilll tapi bkin aku tergila gila sama km </p>
+                <p>💫 Kalo liat kamu pasti aku suka senyum sendiri hehe </p>
+            </div>
+        </div>
+    </div>
+    <!-- MAIN CONTENT END -->
+
+    <!-- FOOTER -->
+    <div class="container-footer">
+        <h1 class="h1-footer">Made with love, just for you! 💖✨</h1>
+    </div>
+    <!-- FOOTER END -->
+
+    <script>
+        // Add some interactive sparkle effects
+        document.addEventListener('mousemove', function(e) {
+            if (Math.random() > 0.8) {
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
+            sparkle.style.animation = 'sparkleAnim 1s ease-out forwards';
+            sparkle.style.zIndex = '1000';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                document.body.removeChild(sparkle);
+            }, 1000);
+        }
+
+        // Add CSS for sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleAnim {
+                0% { opacity: 1; transform: scale(0) rotate(0deg); }
+                50% { opacity: 1; transform: scale(1) rotate(180deg); }
+                100% { opacity: 0; transform: scale(0) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+            function toggleMenu() {
+        document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.container-navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
